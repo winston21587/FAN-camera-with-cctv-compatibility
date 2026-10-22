@@ -190,30 +190,18 @@ def align_face_crop(image: np.ndarray, landmarks: np.ndarray, crop_size=(112, 11
 def draw_face_landmarks(frame: np.ndarray, landmarks: np.ndarray,
                         color=(0, 255, 255)) -> None:
     """
-    Renders 68 landmark dots using cv2.polylines batching.
-    Avoids a 68-iteration Python for-loop by grouping landmark contours
-    (jaw, eyebrows, nose, eyes, mouth) into a single polylines call.
+    Renders 68 landmark dots as individual filled circles.
+    Points are rounded and clipped to the frame in one vectorised numpy pass
+    before the drawing loop to avoid redundant per-point Python logic.
     """
     if landmarks is None:
         return
 
     h, w = frame.shape[:2]
     pts = np.clip(np.round(landmarks).astype(np.int32), [0, 0], [w - 1, h - 1])
+    for (px, py) in pts:
+        cv2.circle(frame, (px, py), 2, color, -1, lineType=cv2.LINE_AA)
 
-    # Standard 68-point landmark contour groups (iBUG ordering)
-    _GROUPS = [
-        range(0, 17),   # jaw
-        range(17, 22),  # left brow
-        range(22, 27),  # right brow
-        range(27, 31),  # nose bridge
-        range(31, 36),  # nose base
-        range(36, 42),  # left eye
-        range(42, 48),  # right eye
-        range(48, 60),  # outer lip
-        range(60, 68),  # inner lip
-    ]
-    curves = [pts[list(g)].reshape(-1, 1, 2) for g in _GROUPS]
-    cv2.polylines(frame, curves, isClosed=False, color=color, thickness=1, lineType=cv2.LINE_AA)
 
 
 # ==========================================================
