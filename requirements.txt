@@ -1,0 +1,8 @@
+# Requirements split into two files because PyTorch uses its own
+# package index (download.pytorch.org) separate from PyPI mirrors.
+#
+# See SETUP.md for installation instructions.
+
+numpy>=1.24.0
+opencv-python>=4.10.0
+face-alignment>=1.5.0

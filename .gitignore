@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Explicitly track setup and config files
+!setup.bat
+!config.json
+!requirements*.txt
+!SETUP.md
+
+# PyTorch / CUDA models & checkpoints
+*.pth
+*.pt
+*.onnx
+
+# Wheel and packaging artifacts
+*.whl
+dist/
+build/
+*.egg-info/
+
+# Output directories & snapshots
+aligned_faces/
+output_restoration/
+test_output/
+snapshots/
+cctv_detection_*.jpg
+*.jpg
+*.jpeg
+*.png
+
+# Large test video files (surveillance footage)
+*.mp4
+*.avi
+*.mkv
+*.mov
+
+# Environments & IDEs
+.env
+.venv
+env/
+venv/
+ENV/
+.vscode/
+.idea/
+.gemini/

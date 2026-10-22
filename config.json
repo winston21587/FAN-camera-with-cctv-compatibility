@@ -1,0 +1,49 @@
+{
+  "source": {
+    "video_source": "0",
+    "description": "Camera index (e.g. 0), video file path ('cctv.mp4'), or RTSP/HTTP network stream"
+  },
+  "recording": {
+    "record_duration_sec": 5.0,
+    "description": "Recording duration in seconds when pressing [C] hotkey or using --record-snippet"
+  },
+  "detection": {
+    "scale_factor": 1.08,
+    "min_neighbors": 5,
+    "min_face_size": [20, 20],
+    "max_faces": 5,
+    "enable_clahe": true
+  },
+  "fan_alignment": {
+    "enable_fan": true,
+    "device": "cuda",
+    "draw_landmarks": true,
+    "crop_size": [512, 512],
+    "save_aligned_crops": true,
+    "crop_output_dir": "aligned_faces",
+    "show_preview_overlay": true
+  },
+  "clip_processing": {
+    "clip_duration_sec": 5.0,
+    "target_fps": 30,
+    "top_k_faces": 5,
+    "min_frame_interval": 5,
+    "output_dir": "output_restoration"
+  },
+  "multiprocessing": {
+    "enabled": true,
+    "max_workers": 2,
+    "description": "Protects CPU by limiting concurrent worker processes for multi-face analysis"
+  },
+  "snapshots": {
+    "output_dir": "snapshots",
+    "description": "Directory where full CCTV frame snapshots [S] are saved"
+  },
+  "display": {
+    "window_name": "CCTV Multi-Face Detection & FAN Alignment",
+    "window_width": 1024,
+    "window_height": 600,
+    "show_hud": true,
+    "target_fps": 30
+  }
+}
