@@ -12,7 +12,11 @@
     "min_neighbors": 5,
     "min_face_size": [20, 20],
     "max_faces": 5,
-    "enable_clahe": true
+    "enable_clahe": true,
+    "detection_skip_frames": 2,
+    "_comment_skip": "Run Haar detection every N+1 frames (0=every frame, 2=every 3rd). Reuses last bboxes in between. Saves CPU significantly.",
+    "detection_downsample": 0.5,
+    "_comment_ds": "Scale factor for detection frame (0.5 = half resolution). Detections are mapped back to full-res. Range: 0.1-1.0."
   },
   "fan_alignment": {
     "enable_fan": true,
